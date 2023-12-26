@@ -1,4 +1,4 @@
-# Technogise-assignment
+# Assignment
 Library Management console application implemented in C++.
 
 # Library Management System
