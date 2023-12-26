@@ -2,13 +2,15 @@
 #include <vector>
 using namespace std;
 
+// We gonna need Book, User and Library classes for basic library management system
 class Book
 {
 public:
+    // Book having title, author name and number of copies available
     string title;
     string author;
-    int availableCopies;
-
+    int availableCopies; // Stor number of copies of book
+    // Default constructor for Book class
     Book(const string &title, const string &author, int copies = 1)
         : title(title), author(author), availableCopies(copies) {}
 };
@@ -17,21 +19,23 @@ class User
 {
 public:
     string name;
-    vector<Book> borrowedBooks;
-
+    vector<Book> borrowedBooks; // Container to store borrowed books
+    // Default constructor for User class
     User(const string &name) : name(name) {}
 };
 
 class Library
 {
 public:
-    vector<Book> books;
+    vector<Book> books; // Container to store books available in library
 
+    // Method for Adding book to library
     void addBook(const Book &book)
     {
         books.push_back(book);
     }
 
+    // Method for View books available in library
     vector<Book> viewAvailableBooks() const
     {
         vector<Book> availableBooks;
@@ -45,6 +49,7 @@ public:
         return availableBooks;
     }
 
+    // Method for borrowing book based on Book title given by user
     bool borrowBook(const string &title, User &user)
     {
         for (Book &book : books)
@@ -66,6 +71,7 @@ public:
         return false;
     }
 
+    // Method for returning book based on title input by User
     void returnBook(const string &title, User &user)
     {
         for (auto it = user.borrowedBooks.begin(); it != user.borrowedBooks.end(); ++it)
@@ -90,12 +96,13 @@ public:
 int main()
 {
     Library library;
-    User user = User("Sumit");
+    User user = User("Sumit"); // Initialising user instance
 
-    int choice;
+    int choice; // choice from user
 
     do
     {
+        // Available choices for user
         cout << "\nLibrary Menu:\n";
         cout << "1. View available books\n";
         cout << "2. Add a book\n";
@@ -105,6 +112,7 @@ int main()
         cout << "Enter your choice: ";
         cin >> choice;
 
+        // Executing functions according to user choice
         switch (choice)
         {
         case 1:
